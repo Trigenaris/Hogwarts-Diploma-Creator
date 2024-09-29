@@ -7,11 +7,11 @@ import datetime
 def diploma_creator(student_name, graduation_date, hogwarts_house, minister_magic, hogwarts_headmaster):
             house_img = InlineImage(doc, image_descriptor=f"C:/Users/User/OneDrive/Belgeler/VScode_projects/hogwarts_diploma/assets/{hogwarts_house.lower()}.png", width=Mm(29), height=Mm(38))
 
-            doc.render({"name": student_name.capitalize(),
+            doc.render({"name": student_name,
                         "date": graduation_date,
                         "house": house_img,
-                        "minister": minister_magic.capitalize(),
-                        "headmaster": hogwarts_headmaster.capitalize()})
+                        "minister": minister_magic,
+                        "headmaster": hogwarts_headmaster})
             
             doc_name = "hogwarts academy " + student_name + ".docx"
             doc.save(doc_name)
