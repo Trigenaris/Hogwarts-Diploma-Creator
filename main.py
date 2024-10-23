@@ -2,7 +2,12 @@ from docxtpl import DocxTemplate, InlineImage
 from docx2pdf import convert
 from docx.shared import Mm
 import pandas as pd
+from PyQt5.QtWidgets import *
+from PyQt5 import uic
 import datetime
+
+
+
 
 def diploma_creator(student_name, graduation_date, hogwarts_house, minister_magic, hogwarts_headmaster):
             house_img = InlineImage(doc, image_descriptor=f"C:/Users/User/OneDrive/Belgeler/VScode_projects/hogwarts_diploma/assets/{hogwarts_house.lower()}.png", width=Mm(29), height=Mm(38))
