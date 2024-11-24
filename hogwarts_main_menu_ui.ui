@@ -152,16 +152,6 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_house">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>120</y>
-       <width>113</width>
-       <height>20</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="lineEdit_date">
      <property name="geometry">
       <rect>
@@ -194,6 +184,45 @@
      <property name="text">
       <string>Create</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_house">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>120</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Harry P</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="currentText">
+      <string>Gryffindor</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Gryffindor</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Hufflepuff</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ravenclaw</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Slytherin</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QLabel" name="label">

@@ -21,7 +21,7 @@ class Ui_login_window(object):
         self.hogwarts_logo_label = QtWidgets.QLabel(self.centralwidget)
         self.hogwarts_logo_label.setGeometry(QtCore.QRect(280, 30, 240, 320))
         self.hogwarts_logo_label.setText("")
-        self.hogwarts_logo_label.setPixmap(QtGui.QPixmap("Downloads/hogwarts_school_logo.png"))
+        self.hogwarts_logo_label.setPixmap(QtGui.QPixmap("assets/hogwarts_school_logo.png"))
         self.hogwarts_logo_label.setScaledContents(True)
         self.hogwarts_logo_label.setObjectName("hogwarts_logo_label")
         self.login_group = QtWidgets.QGroupBox(self.centralwidget)
@@ -58,6 +58,7 @@ class Ui_login_window(object):
         self.comboBox_headmaster.addItem("")
         self.comboBox_headmaster.addItem("")
         self.lineEdit_password = QtWidgets.QLineEdit(self.login_group)
+        self.lineEdit_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_password.setGeometry(QtCore.QRect(145, 110, 113, 20))
         font = QtGui.QFont()
         font.setFamily("Harry P")
@@ -96,3 +97,37 @@ class Ui_login_window(object):
         self.comboBox_headmaster.setItemText(1, _translate("login_window", "Minerva Mcgonagall"))
         self.comboBox_headmaster.setItemText(2, _translate("login_window", "Severus Snape"))
         self.btn_login.setText(_translate("login_window", "Login"))
+
+
+class LoginWindow(QtWidgets.QMainWindow, Ui_login_window):
+    # Define a signal to notify the main app of successful login
+    login_success = QtCore.pyqtSignal(str)
+
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        # Connects the login button to the authentication method
+        self.btn_login.clicked.connect(self.authenticate_user)
+
+        # Stores valid credentials (can be fetched from a database)
+        self.credentials = {
+            "Albus Dumbledore": "AlomoharaThis!",
+            "Minerva Mcgonagall": "Felis_Animagus",
+            "Severus Snape": "Lilly_Evans",
+        }
+
+    def authenticate_user(self):
+        # Get the selected headmaster and entered password
+        headmaster = self.comboBox_headmaster.currentText()
+        password = self.lineEdit_password.text()
+
+        # Check if the credentials are valid
+        if headmaster in self.credentials and self.credentials[headmaster] == password:
+            QtWidgets.QMessageBox.information(self, "Login Successful", f"Welcome, {headmaster}!")
+            # Success signal point
+            self.login_success.emit(headmaster)
+            self.close()
+        else:
+            QtWidgets.QMessageBox.warning(self, "Login Failed", "Invalid headmaster or password. Please try again.")
+            self.lineEdit_password.clear()

@@ -16,19 +16,6 @@ For now, it can be only used in terminal to input user preferences but repo will
 
 ___
 
-## Future Improvements
-
-* Fully dynamic functions
-  * Updating the **path** for each user
-  * Dynamic args for more responsive functions
-* GUI implementation for the end-user
-  * Simplistic window for the user to easily navigate
-  * Path finding widget for the user to add a **csv file** easily
-* Optimizing PDF conversion as it is a slow process.
-* Possible new features to add.
-
-___
-
 The external sources for the projects can be reached by these urls:
 
 * [Harry Potter Font](https://fontmeme.com/fonts/harry-p-font/)

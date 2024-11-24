@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from diploma_funcs import diploma_creator
+import pandas as pd
 
 
 class Ui_main_window(object):
@@ -53,9 +55,6 @@ class Ui_main_window(object):
         self.lineEdit_full_name = QtWidgets.QLineEdit(self.group_single)
         self.lineEdit_full_name.setGeometry(QtCore.QRect(190, 60, 113, 20))
         self.lineEdit_full_name.setObjectName("lineEdit_full_name")
-        self.lineEdit_house = QtWidgets.QLineEdit(self.group_single)
-        self.lineEdit_house.setGeometry(QtCore.QRect(190, 120, 113, 20))
-        self.lineEdit_house.setObjectName("lineEdit_house")
         self.lineEdit_date = QtWidgets.QLineEdit(self.group_single)
         self.lineEdit_date.setGeometry(QtCore.QRect(190, 180, 113, 20))
         self.lineEdit_date.setObjectName("lineEdit_date")
@@ -65,42 +64,50 @@ class Ui_main_window(object):
         self.pushButton_single_create = QtWidgets.QPushButton(self.group_single)
         self.pushButton_single_create.setGeometry(QtCore.QRect(120, 360, 110, 40))
         self.pushButton_single_create.setObjectName("pushButton_single_create")
+        self.comboBox_house = QtWidgets.QComboBox(self.group_single)
+        self.comboBox_house.setGeometry(QtCore.QRect(190, 120, 111, 21))
+        font = QtGui.QFont()
+        font.setFamily("Harry P")
+        font.setPointSize(16)
+        self.comboBox_house.setFont(font)
+        self.comboBox_house.setObjectName("comboBox_house")
+        self.comboBox_house.addItem("")
+        self.comboBox_house.addItem("")
+        self.comboBox_house.addItem("")
+        self.comboBox_house.addItem("")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(340, 10, 71, 91))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("Downloads/gryffindor.png"))
+        self.label.setPixmap(QtGui.QPixmap("assets/gryffindor.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(460, 10, 71, 91))
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("Downloads/hufflepuff.png"))
+        self.label_2.setPixmap(QtGui.QPixmap("assets/hufflepuff.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(580, 10, 71, 91))
         self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap("Downloads/ravenclaw.png"))
+        self.label_3.setPixmap(QtGui.QPixmap("assets/ravenclaw.png"))
         self.label_3.setScaledContents(True)
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(700, 10, 71, 91))
         self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap("Downloads/slytherin.png"))
+        self.label_4.setPixmap(QtGui.QPixmap("assets/slytherin.png"))
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.group_multiple = QtWidgets.QGroupBox(self.centralwidget)
         self.group_multiple.setGeometry(QtCore.QRect(20, 250, 360, 291))
         self.group_multiple.setObjectName("group_multiple")
         self.checkBox_pdf_multiple = QtWidgets.QCheckBox(self.group_multiple)
-        self.checkBox_pdf_multiple.setGeometry(QtCore.QRect(40, 130, 101, 41))
+        self.checkBox_pdf_multiple.setGeometry(QtCore.QRect(120, 130, 101, 41))
         self.checkBox_pdf_multiple.setObjectName("checkBox_pdf_multiple")
         self.pushButton_multiple_choose = QtWidgets.QPushButton(self.group_multiple)
-        self.pushButton_multiple_choose.setGeometry(QtCore.QRect(180, 130, 110, 40))
+        self.pushButton_multiple_choose.setGeometry(QtCore.QRect(95, 220, 160, 40))
         self.pushButton_multiple_choose.setObjectName("pushButton_multiple_choose")
-        self.pushButton_multiple_create = QtWidgets.QPushButton(self.group_multiple)
-        self.pushButton_multiple_create.setGeometry(QtCore.QRect(120, 220, 110, 40))
-        self.pushButton_multiple_create.setObjectName("pushButton_multiple_create")
         self.label_5 = QtWidgets.QLabel(self.group_multiple)
         self.label_5.setGeometry(QtCore.QRect(10, 30, 331, 81))
         self.label_5.setObjectName("label_5")
@@ -137,10 +144,114 @@ class Ui_main_window(object):
         self.label_minister.setText(_translate("main_window", "Minister of Magic:"))
         self.checkBox_pdf_single.setText(_translate("main_window", "PDF Format"))
         self.pushButton_single_create.setText(_translate("main_window", "Create"))
+        self.comboBox_house.setCurrentText(_translate("main_window", "Gryffindor"))
+        self.comboBox_house.setItemText(0, _translate("main_window", "Gryffindor"))
+        self.comboBox_house.setItemText(1, _translate("main_window", "Hufflepuff"))
+        self.comboBox_house.setItemText(2, _translate("main_window", "Ravenclaw"))
+        self.comboBox_house.setItemText(3, _translate("main_window", "Slytherin"))
         self.group_multiple.setTitle(_translate("main_window", "Multiple Diploma"))
         self.checkBox_pdf_multiple.setText(_translate("main_window", "PDF Format"))
-        self.pushButton_multiple_choose.setText(_translate("main_window", "Choose a File"))
-        self.pushButton_multiple_create.setText(_translate("main_window", "Create"))
+        self.pushButton_multiple_choose.setText(_translate("main_window", "Choose a File and Create"))
         self.label_5.setText(_translate("main_window", "For multiple creation you have to choose a \'csv\' file"))
-        self.label_6.setText(_translate("main_window", "Welcome Headmaster\n"
-"{{headmaster}}"))
+        self.label_6.setText(_translate("main_window", "Welcome Headmaster\n", "headmaster"))
+
+
+class MainWindow(QtWidgets.QMainWindow):
+    def __init__(self, headmaster):
+        super(MainWindow, self).__init__()
+        self.ui = Ui_main_window()
+        self.ui.setupUi(self)
+
+        # Stores the headmaster
+        self.headmaster = headmaster
+
+        # Modifies the Headmaster name with the current one
+        self.ui.label_6.setText(f"Welcome Headmaster\n{headmaster}")
+        # Default written minister name
+        self.ui.lineEdit_minister.setText("Cornelius Fudge")
+
+        # Connect radio buttons to the toggled signal
+        self.ui.radiobtn_single.toggled.connect(self.toggle_group_boxes)
+        self.ui.radiobtn_multiple.toggled.connect(self.toggle_group_boxes)
+
+
+        # Default to Single Diploma mode
+        self.ui.radiobtn_single.setChecked(True)
+
+        # Connects the "Create Diploma" button
+        self.ui.pushButton_single_create.clicked.connect(self.create_diploma)
+
+        # Connects the "Multiple Create Diploma" button
+        self.ui.pushButton_multiple_choose.clicked.connect(self.open_csv)
+
+
+    def toggle_group_boxes(self):
+        # Checks the state of the radio buttons and enable/disable group boxes accordingly
+        if self.ui.radiobtn_single.isChecked():
+            self.ui.group_single.setEnabled(True)
+            self.ui.group_multiple.setEnabled(False)
+        elif self.ui.radiobtn_multiple.isChecked():
+            self.ui.group_single.setEnabled(False)
+            self.ui.group_multiple.setEnabled(True)
+
+    def create_diploma(self):
+        # Gets inputs from the form
+        student_name = self.ui.lineEdit_full_name.text()
+        graduation_date = self.ui.lineEdit_date.text()
+        hogwarts_house = self.ui.comboBox_house.currentText()
+        minister_magic = self.ui.lineEdit_minister.text()
+        hogwarts_headmaster = self.headmaster
+
+        # Checks the PDF conversion of the Diploma
+        is_pdf = self.ui.checkBox_pdf_single.isChecked()
+
+        # Validates the inputs
+        if not all([student_name, graduation_date, hogwarts_house]):
+            QtWidgets.QMessageBox.warning(self, "Input Error", "Please fill in all fields!")
+            return
+
+        # Calls the diploma creator function
+        try:
+            diploma_creator(
+                student_name=student_name,
+                graduation_date=graduation_date,
+                hogwarts_house=hogwarts_house,
+                minister_magic=minister_magic,
+                hogwarts_headmaster=hogwarts_headmaster,
+                is_PDF=is_pdf
+            )
+            QtWidgets.QMessageBox.information(self, "Success", "Diploma created successfully!")
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, "Error", f"Failed to create diploma: {e}")
+
+    def open_csv(self):
+        # Opens the file dialog to choose a CSV file
+        file_name, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Open CSV File", "", "CSV Files (*.csv)")
+
+        if file_name:
+            # Load the CSV file into a pandas DataFrame
+            try:
+                df = pd.read_csv(file_name)
+                self.create_multiple_diplomas_from_csv(df)
+            except Exception as e:
+                print(f"Error loading CSV: {e}")
+
+    
+
+    def create_multiple_diplomas_from_csv(self, df):
+        # Brings the current headmaster value
+        hogwarts_headmaster = self.headmaster
+
+        # Checks the PDF conversion of the Multiple Diploma
+        is_pdf_multi = self.ui.checkBox_pdf_multiple.isChecked()
+        
+        # Iterates through the DataFrame and creates diplomas for each row
+        for index, row in df.iterrows():
+            student_name = row['name']
+            minister_magic = row['minister']
+            hogwarts_house = row['house']
+            graduation_date = row['graduation_date']
+            
+            # Calls the diploma_creator function for each student
+            diploma_creator(student_name, graduation_date, hogwarts_house, minister_magic, hogwarts_headmaster, is_PDF_multi=is_pdf_multi)
+
