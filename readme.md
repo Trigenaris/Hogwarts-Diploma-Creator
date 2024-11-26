@@ -6,6 +6,7 @@ It creates the file from a **word document** template and also converts into a *
 
 The requirements for this app to work are:
 
+* Pyqt5
 * pandas
 * docxtpl
 * docx2pdf
