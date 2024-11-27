@@ -1,4 +1,4 @@
-# Hogwarts Diploma Creator ⚡🪄
+# Hogwarts Diploma Creator - PyQt5 GUI ⚡🪄
 
 This simple app creates a Hogwarts Academy Diploma for the user. The diploma has the attributes of the user's preferences such as; student name, house name etc.
 
@@ -6,7 +6,7 @@ It creates the file from a **word document** template and also converts into a *
 
 The requirements for this app to work are:
 
-* Pyqt5
+* PyQt5
 * pandas
 * docxtpl
 * docx2pdf
